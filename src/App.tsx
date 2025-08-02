@@ -8,6 +8,7 @@ import RendezVous from './RendezVous';
 import Message from './Message';
 import Medecin from './Medecin';
 import Code from './code'
+import Rdv from './Rdv'
 import Layout from './Layout';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
@@ -28,6 +29,7 @@ function App() {
             <Route path='/Medecin'      	         element={<Medecin/>}/>
             <Route path='/Rendez-vous' element={<RendezVous/>} />
             <Route path='/Code' element={<Code/>} />
+            <Route path='/rdv' element={<Rdv/>} />
                         
           </Routes>
       </AnimatePresence> 

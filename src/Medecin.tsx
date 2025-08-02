@@ -1,7 +1,8 @@
 import './App.css';
 import { useState, useEffect } from 'react';
 import { api } from './function';
-
+import {MdEmail} from "react-icons/md"
+import {FaSearch} from "react-icons/fa"
 export default function Acceuil() {
   type Medecin = {
     id_medecin: number;
@@ -30,66 +31,39 @@ export default function Acceuil() {
   }, []);
 
   return (
-    <div className='px-4'>
-      <div className='max-h-screen bg-cover bg-center flex flex-col justify-center items-center relative' style={{ backgroundImage: "url('/inscri.jpeg')" }}>
-        <div className='my-auto py-20 px-4 md:py-36'>
-          <h2 className='text-center pb-4 text-xl md:text-2xl lg:text-3xl font-bold my-auto'>Annuaire médecins de l'hôpital</h2>
-          <p className='xl:text-lg text-center'>Ici, vous pouvez consulter la liste de tous nos médecins, ainsi que leur spécialité et horaires journaliers.</p>
-        </div>
+    <div className='px-4 py-8 bg-gray-50 mx-auto'>
+      <div className='flex justify-between gap-5'>
+        <p className='text-lg lg:tex-xl xl:text-2xl font-medium '> Docteurs</p>
+        <form className=' flex p-2 mb-6 bg-white border-2 border-white shadow-md rounded-xl'>
+        <input type="text" name="rechercher" placeholder='rechercher un docteur' className='pr-10 sm:pr-40  outline-none cursor-pointor' required />
+          <button><FaSearch color='gray' className='w-4 h-4'/> </button>
+        </form>
+         
+      </div>
+     
+      <div className='grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4 p-1 bg-white border-2 border-white shadow-lg rounded-xl ml-4 ' >
+        <p className='bg-gradient-to-r from-[#088cb4] to-[#8bc53f73] hover:scale-105 hover:from-[#8bc53f73] hover:to-[#088cb4] cursor-pointer p-2 rounded-xl text-center text-white font-medium'>Tous</p>
       </div>
 
-      <div className='grid grid-cols-1 gap-4 py-4 mt-4 border-t-2 border-[#088cb4]'>
+      <div className='grid grid-cols-1 gap-4 py-4 mt-10'>
         {medecins.map((med, index) => (
           <div key={index}>
-            <div className='grid grid-cols-1 gap-4 border-1 border-[#f7941d] sm:border-none px-4 pb-4 rounded-md'>
+            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  2xl:grid-cols-4 gap-4  s px-4 pb-4 rounded-md'>
 
               {/* Affichage mobile */}
-              <div className='sm:hidden'>
-                <div className='grid grid-cols-2 border-1 border-[#f7941d] p-4 rounded-md mt-4 xl:text-lg'>
-                  <p className='font-medium'>Nom:</p>
-                  <p>{med.nom}</p>
-                  <p className='font-medium'>Sexe:</p>
-                  <p>{med.sexe}</p>
-                  <p className='font-medium'>Service:</p>
-                  <p>{med.service}</p>
-                  <p className='font-medium'>Spécialité:</p>
-                  <p>{med.specialite}</p> {/* ✅ corrigé ici */}
-                  <p className='font-medium'>Jours:</p>
-                  <p>{med.jours}</p>
-                  <p className='font-medium'>De:</p>
-                  <p>{med.heure_debut}</p>
-                  <p className='font-medium'>À:</p>
-                  <p>{med.heure_fin}</p>
-                </div>
+              <div className='bg-white border-2 border-white shadow-xl rounded-xl flex flex-col gap-2 pt-4 items-center text-sm lg:text-lg '>
+               <div className='bg-amber-300 border-2 border-white shadow-xl rounded-full w-40 h-40 '>
+                <img src="/ft.png" alt="" className='rounded-full w-40 h-40'/>
+               </div>
+               <p className='pt-2'>Dr <span className='font-bold'>{med.nom}</span></p>
+               <p className='text-gray-600'>{med.service}cardiologie</p>
+               <p className='bg-[#088cb42f] font-medium text-[#088cb4] py-1 px-8 rounded-lg'>{med.specialite}cardiologue</p>
+               <p className='text-gray-600'>{med.jours}</p>
+               <p className='text-gray-600'>De {med.heure_debut} À {med.heure_fin}</p>
+               <div className='text-gray-600 bg-gradient-to-r from-[#088cb436] to-[#8bc53f73]  flex gap-2 mt-4 py-2  w-full justify-center my-auto rounded-xl cursor-pointer'> <MdEmail color='gray' className='w-5 h-5 xl:w-6 xl:h-6'/>
+               <button> Message</button></div>
               </div>
 
-              {/* Affichage bureau */}
-              <div className='hidden sm:block pt-4'>
-                <table className='p-4 border-1 min-w-[100%]'>
-                  <thead>
-                    <tr className='text-lg xl:text-xl'>
-                      <th>Nom</th>
-                      <th>Sexe</th>
-                      <th>Service</th>
-                      <th>Spécialité</th>
-                      <th>Jours</th>
-                      <th>De</th>
-                      <th>À</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr key={index} className='xl:text-lg'>
-                      <td className='border-1 text-left p-2 w-[150px]'>{med.nom}</td>
-                      <td className='border-1 text-left p-2 w-[150px]'>{med.sexe}</td>
-                      <td className='border-1 text-left p-2 w-[150px]'>{med.service}</td>
-                      <td className='border-1 text-left p-2 w-[150px]'>{med.specialite}</td> {/* ✅ corrigé ici */}
-                      <td className='border-1 text-left p-2 w-[150px]'>{med.jours}</td>
-                      <td className='border-1 text-left p-2 w-[150px]'>{med.heure_debut}</td>
-                      <td className='border-1 text-left p-2 w-[150px]'>{med.heure_fin}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
 
             </div>
           </div>

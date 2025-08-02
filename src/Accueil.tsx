@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import './App.css';
-import Medecin from './Medecin';
-import Rdv from './Rdv';
 import {FaHome,FaUserMd, FaPhoneAlt, FaUser } from "react-icons/fa"
 import {MdEmail} from "react-icons/md"
 import { Link } from 'react-router';
@@ -9,8 +7,7 @@ import { Link } from 'react-router';
 
 function Acceuil() {
 const [num,setNum]= useState<boolean>(false)
-const [medecin,setMedecin]= useState<boolean>(false)
-const [rdv, setRdv]= useState<boolean>(false)
+
   return (
     <>
       <div className='bg-[#f4f4f462] '>
@@ -91,7 +88,7 @@ const [rdv, setRdv]= useState<boolean>(false)
                 </div>
                 <div className="w-full text-center text-white">
                   <p className='mb-2 font-semibold text-lg md:text-xl xl:text-2xl'>Mes rendez-vous</p>
-                  <button onClick={()=> setRdv(!rdv)} className='bg-white/70 rounded-md px-5 py-2  text-sm mt-2 hover:scale-110 hover:text-md hover:cursor-pointer transition-transform duration-300'>CLIQUER ICI</button>
+                  <button  className='bg-white/70 rounded-md px-5 py-2  text-sm mt-2 hover:scale-110 hover:text-md hover:cursor-pointer transition-transform duration-300'><Link to="/Rdv">CLIQUER ICI</Link></button>
                 </div>
               </div>
               <div className=" bg-[#59c2e2] rounded-xl flex items-center px-3 py-5">
@@ -100,7 +97,7 @@ const [rdv, setRdv]= useState<boolean>(false)
                 </div>
                 <div className="w-full text-center text-white">
                   <p className='mb-2 font-medium text-lg md:text-xl xl:text-2xl'>Annuaire medecins</p>
-                  <button onClick={()=> setMedecin(!medecin)} className='bg-white/70 rounded-md px-5 py-2  text-sm mt-2 hover:scale-110 hover:text-md hover:cursor-pointer transition-transform duration-300'>CLIQUER ICI</button>
+                  <button  className='bg-white/70 rounded-md px-5 py-2  text-sm mt-2 hover:scale-110 hover:text-md hover:cursor-pointer transition-transform duration-300'><Link to="/Medecin">CLIQUER ICI</Link></button>
                 </div>
               </div>
               <div className=" bg-[#59c2e2] rounded-xl flex items-center  px-4 py-5">
@@ -195,43 +192,7 @@ const [rdv, setRdv]= useState<boolean>(false)
             
         )
         }
-        {
-          medecin && (
-            <div  className='fixed inset-0 bg-black/30 z-40 ' > 
-               <div className='fixed inset-0  flex justify-center items-center    z-50 '>
-                <div className='w-[95%] max-h-[98%] pb-2 rounded-md border-1 border-[#088cb4]  bg-[linear-gradient(to_right,#f3d4d6_0%,#f3f4f6_0%,#088cb4_200%,#088cb4_200%)]     shadow-lg  overflow-x-auto ' >
-                  <div className='flex w-full justify-end '>
-                        
-                         <button onClick={()=> setMedecin(false)}  className='self-end mb-4 text-[#088cb4] hover:underline pr-2'> &times;</button>
-                    </div>
-                    <div>
-                      <Medecin/>
-                    </div>
-                </div>
-               </div>
-            </div>
-          )
-        }
-     
-      
-         {
-          rdv && (
-              <div  className='fixed inset-0 bg-black/30 z-40 ' > 
-               <div className='fixed inset-0  flex justify-center items-center  z-50 '>
-                <div className='w-[95%] max-h-[98%] bg-gray-100 rounded-md border-1 border-[#088cb4]     shadow-lg  overflow-x-auto ' >
-                  <div className='flex w-full justify-end '>
-                        
-                         <button onClick={()=> setRdv(false)}  className='self-end mb-4 text-[#088cb4] hover:underline pr-2'> &times;</button>
-                    </div>
-                    <div>
-                      
-                      <Rdv/>
-                    </div>
-                </div>
-               </div>
-            </div>            
-          )
-        }
+        
       </div>
     </>
   )
