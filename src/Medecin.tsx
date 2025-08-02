@@ -32,7 +32,7 @@ export default function Acceuil() {
 
   return (
     <div className='px-4 py-8 bg-gray-50 mx-auto'>
-      <div className='flex justify-between gap-5'>
+      <div className='flex justify-between gap-3'>
         <p className='text-lg lg:tex-xl xl:text-2xl font-medium '> Docteurs</p>
         <form className=' flex p-2 mb-6 bg-white border-2 border-white shadow-md rounded-xl'>
         <input type="text" name="rechercher" placeholder='rechercher un docteur' className='pr-10 sm:pr-40  outline-none cursor-pointor' required />
@@ -41,7 +41,7 @@ export default function Acceuil() {
          
       </div>
      
-      <div className='grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4 p-1 bg-white border-2 border-white shadow-lg rounded-xl ml-4 ' >
+      <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4 p-1 bg-white border-2 border-white shadow-lg rounded-xl ml-2 ' >
         <p className='bg-gradient-to-r from-[#088cb4] to-[#8bc53f73] hover:scale-105 hover:from-[#8bc53f73] hover:to-[#088cb4] cursor-pointer p-2 rounded-xl text-center text-white font-medium'>Tous</p>
       </div>
 
@@ -56,7 +56,7 @@ export default function Acceuil() {
                <p className='pt-2'>Dr <span className='font-bold'>Robert</span></p>
                <p className='text-gray-600'>cardiologie</p>
                <p className='bg-[#088cb42f] font-medium text-[#088cb4] py-1 px-8 rounded-lg'>cardiologue</p>
-               <p className='text-gray-600'>;undi au samedi</p>
+               <p className='text-gray-600'>lundi au samedi</p>
                <p className='text-gray-600'>De 8h À 16h</p>
                <div className='text-gray-600 bg-gradient-to-r from-[#088cb436] to-[#8bc53f73]  flex gap-2 mt-4 py-2  w-full justify-center my-auto rounded-xl cursor-pointer'> <MdEmail color='gray' className='w-5 h-5 xl:w-6 xl:h-6'/>
                <button> Message</button></div>
