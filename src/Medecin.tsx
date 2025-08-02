@@ -32,16 +32,16 @@ export default function Acceuil() {
 
   return (
     <div className='px-4 py-8 bg-gray-50 mx-auto'>
-      <div className='flex justify-between gap-3'>
+      <div className='flex justify-between gap-5'>
         <p className='text-lg lg:tex-xl xl:text-2xl font-medium '> Docteurs</p>
         <form className=' flex p-2 mb-6 bg-white border-2 border-white shadow-md rounded-xl'>
-        <input type="text" name="rechercher" placeholder='rechercher un docteur' className='pr-10 sm:pr-40  outline-none cursor-pointor' required />
+        <input type="text" name="rechercher" placeholder='rechercher un docteur' className='pr-4 sm:pr-40  outline-none cursor-pointor' required />
           <button><FaSearch color='gray' className='w-4 h-4'/> </button>
         </form>
          
       </div>
      
-      <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4 p-1 bg-white border-2 border-white shadow-lg rounded-xl ml-2 ' >
+      <div className='mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4 p-1 bg-white border-2 border-white shadow-lg rounded-xl ml-2 ' >
         <p className='bg-gradient-to-r from-[#088cb4] to-[#8bc53f73] hover:scale-105 hover:from-[#8bc53f73] hover:to-[#088cb4] cursor-pointer p-2 rounded-xl text-center text-white font-medium'>Tous</p>
       </div>
 
