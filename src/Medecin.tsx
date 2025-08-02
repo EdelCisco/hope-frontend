@@ -46,6 +46,24 @@ export default function Acceuil() {
       </div>
 
       <div className='grid grid-cols-1 gap-4 py-4 mt-10'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  2xl:grid-cols-4 gap-4  s px-4 pb-4 rounded-md'>
+
+              {/* Affichage mobile */}
+              <div className='bg-white border-2 border-white shadow-xl rounded-xl flex flex-col gap-2 pt-4 items-center text-sm lg:text-lg '>
+               <div className='bg-amber-300 border-2 border-white shadow-xl rounded-full w-40 h-40 '>
+                <img src="/ft.png" alt="" className='rounded-full w-40 h-40'/>
+               </div>
+               <p className='pt-2'>Dr <span className='font-bold'>Robert</span></p>
+               <p className='text-gray-600'>cardiologie</p>
+               <p className='bg-[#088cb42f] font-medium text-[#088cb4] py-1 px-8 rounded-lg'>cardiologue</p>
+               <p className='text-gray-600'>;undi au samedi</p>
+               <p className='text-gray-600'>De 8h À 16h</p>
+               <div className='text-gray-600 bg-gradient-to-r from-[#088cb436] to-[#8bc53f73]  flex gap-2 mt-4 py-2  w-full justify-center my-auto rounded-xl cursor-pointer'> <MdEmail color='gray' className='w-5 h-5 xl:w-6 xl:h-6'/>
+               <button> Message</button></div>
+              </div>
+
+
+            </div>
         {medecins.map((med, index) => (
           <div key={index}>
             <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  2xl:grid-cols-4 gap-4  s px-4 pb-4 rounded-md'>
