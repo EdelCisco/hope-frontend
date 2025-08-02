@@ -41,12 +41,12 @@ export default function Acceuil() {
          
       </div>
      
-      <div className='mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4 p-1 bg-white border-2 border-white shadow-lg rounded-xl ml-2 ' >
+      <div className='mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4 p-1 bg-white border-2 border-white shadow-lg rounded-xl ml-2 ' >
         <p className='bg-gradient-to-r from-[#088cb4] to-[#8bc53f73] hover:scale-105 hover:from-[#8bc53f73] hover:to-[#088cb4] cursor-pointer p-2 rounded-xl text-center text-white font-medium'>Tous</p>
       </div>
 
       <div className='grid grid-cols-1 gap-4 py-4 mt-10'>
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  2xl:grid-cols-4 gap-4  s px-4 pb-4 rounded-md'>
+        <div className='grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-3  2xl:grid-cols-4 gap-4  s px-4 pb-4 rounded-md'>
 
               {/* Affichage mobile */}
               <div className='bg-white border-2 border-white shadow-xl rounded-xl flex flex-col gap-2 pt-4 items-center text-sm lg:text-lg '>
