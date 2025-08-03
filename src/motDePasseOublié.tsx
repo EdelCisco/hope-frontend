@@ -4,6 +4,9 @@ import {MdEmail} from "react-icons/md"
 import { api } from "./function";
 import {useNavigate } from "react-router-dom"
 
+
+
+
 function MotDePasseOublié() {
 
 
@@ -24,7 +27,7 @@ function MotDePasseOublié() {
   };
 
   const submit = async (e: React.FormEvent) => {
-   
+
     e.preventDefault();
     setError('');
     // Réinitialise les messages d'erreur et de succès
@@ -63,14 +66,14 @@ function MotDePasseOublié() {
 
   return (
     <>
-      <div className='min-h-screen bg-cover bg-center flex flex-col justify-center items-center ' style={{backgroundImage: "url('/ft.png')"}}>
-        <div className='backdrop-blur-xs w-[90%] 2xl:w-[60%] bg-white/10 rounded-2xl border-1 border-[#088cb4] grid grid-cols-1 sm:grid-cols-2 py-4'>
+      <div className='min-h-screen bg-cover bg-center flex flex-col justify-center items-center ' style={{backgroundImage: "url('/k.jpg')"}}>
+        <div className='backdrop-blur-xs w-[90%] lg:w-[80%] xl:w-[70%] 2xl:w-[60%] bg-white/10 rounded-2xl border-1 border-[#088cb4] grid grid-cols-1 sm:grid-cols-2 py-4'>
             <div className='flex flex-col justify-center items-center'>
               <div className='flex justify-center items-center'>
                 <img src="/infomation.png" alt="loogo" className='w-24'/>
               </div>
-            <div className='mx-8 py-8 sm:text-center '>
-                <h1 className='text-3xl '> Mot de passe oublié</h1>
+            <div className='mx-8 py-8 text-center '>
+                <h1 className='text-xl lg:text-2xl xl:text-3xl '> Mot de passe oublié</h1>
                 <p className='lg:text-xl '> Entrez votre email, un code de modification vous sera envoyé</p>
             </div>
             <div className="relative w-[80%] bottom-6 xl:bottom-3 text-red-500 text-sm min-h-[16px] break-words h-auto">
@@ -84,7 +87,7 @@ function MotDePasseOublié() {
             </div>
            
             <form onSubmit={submit} className='grid grid-cols-1 gap-4 mx-8 lg:text-lg '>
-              <div className='flex gap-4 items-start border-1 border-[#088cb4] rounded-sm p-2  bg-[#f4f4f462] '>
+              <div className='flex gap-4 items-start border-1 border-[#088cb4] rounded-sm p-2  bg-[#f4f4f462] sm:mt-30 '>
 
                 <MdEmail size={30} />
                 <div className='w-full'>
@@ -94,7 +97,7 @@ function MotDePasseOublié() {
                
               </div>
              
-              <button disabled={bloque} className='rounded-sm text-white font-medium text-center bg-[#8bc53f] py-2 shadow-md shadow-gray-300 hover:scale-105 cursor-pointer'> Envoyer</button>
+              <button disabled={bloque} className='rounded-sm sm:mb-30 text-white font-medium text-center bg-[#8bc53f] py-2 shadow-md shadow-gray-300 hover:scale-105 cursor-pointer'> Envoyer</button>
               
             </form>
             

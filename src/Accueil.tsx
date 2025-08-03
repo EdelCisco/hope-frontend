@@ -6,6 +6,7 @@ import { Link } from 'react-router';
 // import { IoMdClose } from 'react-icons/io';
 
 function Acceuil() {
+  
 const [num,setNum]= useState<boolean>(false)
 
   return (

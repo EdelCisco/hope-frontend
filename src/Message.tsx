@@ -1,8 +1,13 @@
 
 import { useState} from 'react'
 import './App.css'
+// import { api } from "./function";
+import { useUser } from './Users';
+import {Navigate} from "react-router-dom"
 
 function Message() {
+    const {user,loading}= useUser()
+
     type Historiques= {
         id:number;
         sender:'patient' | 'medecin';
@@ -50,6 +55,8 @@ const closeHistorique= ()=>{
     setMsg(null)
     setModal(false)
 }
+if (loading) return <div>Chargement...</div>; 
+if (!user) return <Navigate to="/Connexion" replace />;
   return (
     <>
     <div className='bg-[#f4f4f462] h-screen'>

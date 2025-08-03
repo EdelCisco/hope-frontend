@@ -85,12 +85,12 @@ function RendezVous() {
     <>
     
       <div className='min-h-full bg-cover  bg-center flex flex-col justify-center items-center py-4' style={{backgroundImage: "url('/rdv1.jpeg')"}}>
-        <div className='backdrop-blur-xs w-[90%] 2xl:w-[60%] bg-white/50 rounded-2xl border-1 border-[#088cb4] grid grid-cols-1  py-4'>
+        <div className='backdrop-blur-xs w-[90%] lg:w-[70%] xl:w-[60%]  bg-white/50 rounded-2xl border-1 border-[#088cb4] grid grid-cols-1  py-4'>
             <div className='flex flex-col justify-center items-center'>
               <div className='flex justify-center items-center'>
                 <img src="/infomation.png" alt="loogo" className='w-24'/>
               </div>
-            <div className='mx-8 pb-8 sm:text-center'>
+            <div className='mx-8 pb-8 text-center'>
                 <h1 className='text-3xl xl:text-4xl'> Bienvenue</h1>
                 <p className='lg:text-xl xl:text-2xl'> Prenez votre rendez-vous !</p>
                 <p>Nb: les champs possedant un asteris sont obligatoires</p>

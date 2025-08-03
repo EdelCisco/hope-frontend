@@ -23,7 +23,7 @@ function App() {
             <Route path="/Profil"       	         element={<Profil/>}/>
             <Route path='/Connexion'      	         element={<Connexion/>}/>
             <Route path='/Inscription'      	         element={<Inscription/>}/>
-            <Route path='/MotDePasseOublié'      	         element={<MotDePasseOublié/>}/> 
+            <Route path='/MotDePasseOublie'      	         element={<MotDePasseOublié/>}/> 
             <Route path='/RenouvelerLemdp'      	         element={<RenouvelerLemdp/>}/> 
             <Route path='/Message'      	         element={<Message/>}/> 
             <Route path='/Medecin'      	         element={<Medecin/>}/>

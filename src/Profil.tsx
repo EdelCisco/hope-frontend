@@ -10,7 +10,7 @@ function Profil() {
  const [oeil, setOeil]= useState<boolean>(false)
 const [bloque, setBloque]= useState<boolean>(false)
   const [erreur, setError] = useState<string []>([]);
-const {user,setUser}= useUser()
+const {user,setUser,loading}= useUser()
 
 
   const [data, setData] = useState({
@@ -79,7 +79,8 @@ const {user,setUser}= useUser()
     }
   };
 
-if(!user) return <Navigate to="/Connexion" replace />;
+if (loading) return <div>Chargement...</div>; 
+if (!user) return <Navigate to="/Connexion" replace />;
 
   return (
     <>

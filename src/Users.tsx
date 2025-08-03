@@ -59,6 +59,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
         } else {
           setUser(null);
         }
+     
       })
       .catch(() => {
         setUser(null);
