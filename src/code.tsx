@@ -74,6 +74,7 @@ function Code() {
       const response = await api.post("/Code", currentData);
     
       if (response.data.errors == null) {
+        alert(response.data.route)
         navigate(response.data.route);
       } else {
         setMessage(response.data.errors);
