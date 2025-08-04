@@ -4,7 +4,7 @@ import { api } from './function';
 import { useUser } from './Users';
 import {FaHome,FaCalendarAlt, FaEnvelope, FaUserCircle} from "react-icons/fa"
 import {useNavigate} from "react-router-dom"
-
+import Notifications from './Notifications';
 export default function Navigation() {
     const [more, setMore]= useState<boolean>(false)
      const {user, setUser} = useUser()
@@ -41,12 +41,12 @@ export default function Navigation() {
 
     return (
         <div>
-            <div className='w-full bg-[#59c2e2] border-b border-[#088cb4] text-sm  flex gap-8 text-white py-2 px-4 mb-10 justify-end md:pr-22 lg:text-lg xl:text-xl'>
+            <div className='w-full bg-[#59c2e2] border-b border-[#088cb4] text-sm  flex gap-8 text-white py-2 px-4 mb-10 justify-end  md:pr-22 lg:text-lg xl:text-xl'>
                {user? (
-                <div className='flex gap-6'>
+                <div className='flex justify-center items-center gap-6'>
                     <p className=''> Bienvenu Mr/Mme   <span className='pl-4'>{user?.Nom}</span> </p>
-              
                  <button  onClick={handleLogout} className='hover:cursor-pointer hover:scale-110 hover:text-black'>Deconnexion</button>
+                <p><Notifications id_client={user.id_client} /></p>
                 </div> 
               ): ( <Link to="/Connexion" className='hover:cursor-pointer hover:scale-110 hover:text-black'>Connexion</Link>)}
                 

@@ -17,7 +17,9 @@ type user = {
   Email: string,
   Sexe: string,
   Rang: string,
-  complet:number
+  complet:number,
+  role:string,
+  non_lu: number
 };
 
 type Notification = {

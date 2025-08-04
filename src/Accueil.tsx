@@ -3,11 +3,14 @@ import './App.css';
 import {FaHome,FaUserMd, FaPhoneAlt, FaUser } from "react-icons/fa"
 import {MdEmail} from "react-icons/md"
 import { Link } from 'react-router';
+import { useUser } from './Users';
+
 // import { IoMdClose } from 'react-icons/io';
 
 function Acceuil() {
   
 const [num,setNum]= useState<boolean>(false)
+ const { user} = useUser();
 
   return (
     <>
@@ -48,6 +51,12 @@ const [num,setNum]= useState<boolean>(false)
                     <p className='mb-2 font-semibold text-lg md:text-xl lg:text-xl xl:text-2xl '>Messagerie</p>
                     <button  className='bg-white/70 rounded-md px-5 py-2  text-sm mt-2 hover:scale-110 hover:text-md hover:cursor-pointer transition-transform duration-300'><Link  to="/Message">CLIQUER ICI</Link></button>
                 </div>
+           {user && typeof user.non_lu !== 'undefined' && user.non_lu > 0 && (
+  <p className="absolute top-2 right-2 text-white bg-red-600 w-6 h-6 text-sm rounded-full flex items-center justify-center">
+    {user.non_lu}
+  </p>
+)}
+
               </div>
               <div className=" bg-[#8bc53f] rounded-xl flex items-center px-4 py-5">
                 <div className="border-r-1 border-white pr-4">
