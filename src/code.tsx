@@ -1,6 +1,5 @@
 import { useState, useRef} from 'react';
 import { api } from './function';
-import { useUser } from './Users';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 
 function Code() {
@@ -10,7 +9,6 @@ function Code() {
   const [msg, setMsg] = useState(searchParams.get('msg'));
   const [code, setCode] = useState<string>(searchParams.get('code') ?? '');
   const [message, setMessage] = useState('');
-  const { setUser } = useUser();
   const navigate = useNavigate();
   const [bloque, setBloque] = useState(false);
 
@@ -74,12 +72,8 @@ function Code() {
     try {
       setBloque(true);
       const response = await api.post("/Code", currentData);
-
+    
       if (response.data.errors == null) {
-        const userRes = await api.post("/Token");
-        if (userRes.data && userRes.data.Email) {
-          setUser(userRes.data);
-        }
         navigate(response.data.route);
       } else {
         setMessage(response.data.errors);
