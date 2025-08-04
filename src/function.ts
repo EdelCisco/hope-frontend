@@ -1,11 +1,11 @@
 import axios from 'axios'
 import { io } from "socket.io-client";
 
-export const socket = io("http://localhost:3000"); // adapte à ton backend
+export const socket = io("https://hope-backend-production-813f.up.railway.app"); // adapte à ton backend
 
 
 export const api= axios.create({
-  baseURL: 'http://localhost:3000',
+  baseURL: 'https://hope-backend-production-813f.up.railway.app',
  
   headers: { "Content-Type": "application/json" },
   withCredentials: true,

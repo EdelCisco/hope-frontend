@@ -72,7 +72,7 @@ function Connexion() {
   };
 
 const google = () => {
-  window.location.href = "http://localhost:3000/auth/google";
+  window.location.href = "https://hope-backend-production-813f.up.railway.app/auth/google";
 };
 
   return (

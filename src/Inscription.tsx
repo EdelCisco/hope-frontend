@@ -63,7 +63,10 @@ function Inscription() {
     }
   };
 
-  
+  const google = () => {
+  window.location.href = "https://hope-backend-production-813f.up.railway.app/auth/google";
+};
+
 
   return (
     <>
@@ -124,7 +127,7 @@ function Inscription() {
               <button className='rounded-sm text-white font-medium text-center bg-gradient-to-r from-[#088cb4] to-[#f7941d]  py-2 shadow-md shadow-gray-300 hover:scale-105 hover:from-[#f7941d] hover:to-[#088cb4] cursor-pointer'> S'inscrire</button>
               <p className='text-center text-sm lg:text-lg'> Déja un compte?</p>
               <button disabled={bloque} type='button' className='rounded-sm text-white font-medium text-center bg-[#088cb4] py-2 shadow-md shadow-gray-300 hover:scale-105 cursor-pointer'><Link to="/Connexion"> Se connecter</Link></button>
-               <button type='button' className='rounded-sm text-white font-medium text-center bg-[#088cb4] py-2 shadow-md shadow-gray-300 hover:scale-105 cursor-pointer'> S'inscrire avec Google</button>
+               <button type='button' onClick={google} className='rounded-sm text-white font-medium text-center bg-[#088cb4] py-2 shadow-md shadow-gray-300 hover:scale-105 cursor-pointer'> S'inscrire avec Google</button>
             </form>
             
             
