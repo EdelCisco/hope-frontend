@@ -38,7 +38,7 @@ function Inscription() {
 
        if(response.data.errors==null){
         
-     navigate(`${response.data.route}?msg=${encodeURIComponent(response.data.msg)}&email=${encodeURIComponent(response.data.email)}&code=${encodeURIComponent(response.data.code)}`);
+     navigate(`${response.data.route}?msg=${encodeURIComponent(response.data.msg)}&email=${encodeURIComponent(response.data.email)}&code=${encodeURIComponent(response.data.code)}&objet=${encodeURIComponent(response.data.objet)}`);
 
 
       setData({
