@@ -1,5 +1,6 @@
 import { useState, useRef} from 'react';
 import { api } from './function';
+import { useUser } from './Users';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 
 function Code() {
@@ -9,6 +10,7 @@ function Code() {
   const [msg, setMsg] = useState(searchParams.get('msg'));
   const [code, setCode] = useState<string>(searchParams.get('code') ?? '');
   const [message, setMessage] = useState('');
+  const { setUser } = useUser();
   const navigate = useNavigate();
   const [bloque, setBloque] = useState(false);
 
@@ -72,9 +74,15 @@ function Code() {
     try {
       setBloque(true);
       const response = await api.post("/Code", currentData);
-      alert(response.data.route)
+    
       if (response.data.errors == null) {
-        alert(response.data.route)
+        if(objet==="MotDePasse"){
+           const userRes = await api.post("/Token");
+        if (userRes.data && userRes.data.Email) {
+          setUser(userRes.data);
+        }
+        }
+       
         navigate(response.data.route);
       } else {
         setMessage(response.data.errors);
@@ -103,7 +111,7 @@ function Code() {
         </div>
 
         <form onSubmit={submit} className='grid grid-cols-1 gap-4 mx-8 lg:text-lg'>
-          <div className='mx-[50%] sm:mx-0 flex gap-4 items-center justify-center border-1 border-[#088cb4] rounded-sm p-2 bg-[#f4f4f462]'>
+          <div className='flex gap-4 items-center justify-center border-1 border-[#088cb4] rounded-sm p-2 bg-[#f4f4f462]'>
             {[0, 1, 2, 3].map(index => (
               <input
                 key={index}
