@@ -71,7 +71,6 @@ function Code() {
     setMessage('');
     try {
       setBloque(true);
-      alert("ok")
       const response = await api.post("/Code", currentData);
       alert(response.data.route)
       if (response.data.errors == null) {
