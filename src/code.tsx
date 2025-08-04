@@ -69,7 +69,6 @@ function Code() {
   };
 
   const submitAuto = async (currentData: typeof data) => {
-    alert(objet)
     if (bloque) return;
     setMessage('');
     try {
