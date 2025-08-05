@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Bell } from 'lucide-react';
-import { api } from './function';
+import { api, socket } from './function';
 import { FaTrashAlt } from "react-icons/fa";
 
 interface Notification {
@@ -70,7 +70,18 @@ export default function Notifications({ id_client }: Props) {
   };
 
   const unreadCount = notifications.filter(n => !n.lu).length;
+ useEffect(() => {
+    // Quand une nouvelle souscription arrive
+    socket.on("nouveau_rdv", (data) => {
 
+      setNotifications(data);
+    });
+
+    // Nettoyage à la déconnexion du composant
+    return () => {
+      socket.off("nouveau_rdv");
+    };
+  }, []);
   return (
     <div className="relative inline-block text-left">
       <button onClick={handleToggle} className="relative p-2">
