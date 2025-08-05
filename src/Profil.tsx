@@ -103,10 +103,10 @@ if (!user) return <Navigate to="/Connexion" replace />;
         <div className='grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-0'>
         <div>
         <div className=' bg-cover bg-center flex flex-col justify-center items-center text-white rounded-md' style={{backgroundImage: "url('/r.jpeg')"}}>
-          <div className='backdrop-brightness-50 w-full h-full flex flex-col justify-center items-center py-8'>
+          <div className='backdrop-brightness-50 w-full h-full flex flex-col justify-center items-center py-4 rounded-md'>
             <img src="/buser.png" alt="profil" className='w-24 h-24 rounded-full border-1 border-[#088cb4] my-4' />
             <h1 className='font-bold text-2xl xl:text-3xl'> {user.Nom}</h1>
-            <p className='py-4 mx-10 text-center lg:text-lg xl:text-xl '>Votre espace profil, où vous pouvez comsulter et modifier vos Informations selon votre convenance</p>
+            <p className='py-2 mx-10 text-center lg:text-lg xl:text-xl '>Votre espace profil, où vous pouvez comsulter et modifier vos Informations selon votre convenance</p>
           </div>
           
         </div>
@@ -114,7 +114,7 @@ if (!user) return <Navigate to="/Connexion" replace />;
           <button onClick={supprimer} className='mx-10 rounded-sm text-white font-medium text-center bg-red-600 shadow-lg py-2 px-4 my-4'> Supprimer le compte</button>
         </div>
         </div>
-        <form   className='grid grid-cols-1 gap-4 text-black relative bottom-8 mx-4 sm:bottom-0 sm:py-4 lg:text-lg'>
+        <form   className='grid grid-cols-1 gap-4 text-black relative bottom-8 mx-4 sm:bottom-0  lg:text-lg'>
              <div className="relative w-[80%] bottom-6 xl:bottom-3 text-red-500 text-sm min-h-[16px] break-words h-auto">
               {erreur.length > 0 ? (
                           erreur.map((er, i) => (
