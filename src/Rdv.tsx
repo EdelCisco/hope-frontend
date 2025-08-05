@@ -19,7 +19,7 @@ type FilterType = 'jour' | 'semaine' | 'mois' | 'annee';
 function Rdv() {
   const [rdvs, setRdvs] = useState<RdvType[]>([]);
   const [filter, setFilter] = useState<FilterType>('jour'); // par défaut "jour"
-  const { user, loading } = useUser();
+  const { user,setUser, loading } = useUser();
 
   const fetchRdv = async () => {
     try {
@@ -38,6 +38,10 @@ function Rdv() {
     try {
       const response = await api.post(`/Annuler/${id}`);
       if (response.data.errors == null) {
+             const userRes = await api.post("/Token");
+        if (userRes.data && userRes.data.Email) {
+          setUser(userRes.data);
+        }
         setRdvs(prev => prev.filter(r => r.id_rendez_vous !== id));
       } else {
         Navigate(response.data.route);
