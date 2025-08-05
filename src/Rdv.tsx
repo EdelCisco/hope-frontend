@@ -38,7 +38,7 @@ function Rdv() {
     try {
       const response = await api.post(`/Annuler/${id}`);
       if (response.data.errors == null) {
-        setRdvs(response.data.infos);
+        setRdvs(prev => prev.filter(r => r.id_rendez_vous !== id));
       } else {
         Navigate(response.data.route);
       }
