@@ -162,7 +162,7 @@ if (!user) return <Navigate to="/Connexion" replace />;
                   
                     <p className='font-medium '>Date de naissance</p>
                       {bloque ? 
-                    <input type="date" name='ddn' value={data.ddn} onChange={Change}  placeholder='entrez une date de naissance' className='outline-none ' required/>:
+                    <input type="date" name='ddn' min="1900-01-01" max="2007-12-31" value={data.ddn} onChange={Change}  placeholder='entrez une date de naissance' className='outline-none ' required/>:
                     <p> {user?.ddn}</p>}
                 </div>
                

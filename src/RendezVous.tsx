@@ -9,7 +9,7 @@ function RendezVous() {
 
  const [bloque, setBloque] = useState(false); // Gère l'état de blocage du formulaire
   
-
+  const formData = new FormData()
   const [data, setData] = useState({
     nom: "",
     ddn: "",
@@ -19,7 +19,7 @@ function RendezVous() {
     motif: "",
     medecin: "",
     DateHeure: "",
-    document: "",
+    document: formData,
     typeDePatient: "Suivi",
     informations: ""
   
@@ -33,6 +33,12 @@ function RendezVous() {
   const Change = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
+
+  const handleUpload = async (event: any) => {
+  const file = event.target.files[0]
+  formData.append('fichier', file)
+  }
+
 
   const submit = async (e: React.FormEvent) => {
    
@@ -58,7 +64,7 @@ function RendezVous() {
     motif: "",
     medecin: "",
     DateHeure: "",
-    document: "",
+    document: formData,
     typeDePatient: "Suivi",
     informations: ""
       
@@ -114,7 +120,7 @@ function RendezVous() {
                 <div className='w-full'>
                     <p className='font-medium'>Date de naissance<span className=" text-red-400">*</span></p>
                     <div className='flex '>
-                    <input type='date' name='ddn' value={data.ddn} onChange={Change} placeholder='Date de naissance'  className='outline-none w-full' required />
+                    <input type='date' name='ddn' min="1900-01-01" max="2007-08-09" value={data.ddn} onChange={Change} placeholder='Date de naissance'  className='outline-none w-full' required />
                     </div>
                 </div>
                
@@ -201,7 +207,7 @@ function RendezVous() {
                 <div className='w-full'>
                     <p className='font-medium'>Document</p>
                     <div className='flex '>
-                    <input type='file' name='document' value={data.document} onChange={Change} placeholder='ordonance,resulatt ...'  className='outline-none w-full' />
+                    <input type='file' name='document' onChange={handleUpload} placeholder='ordonance,resulatt ...'  className='outline-none w-full' />
                     </div>
               
                
