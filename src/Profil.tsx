@@ -33,6 +33,21 @@ const {user,setUser,loading}= useUser()
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
+
+  const supprimer = async()=>{
+    try{
+ const response = await api.post("/Suppression", data);
+
+       if(response.data.errors==null){
+      setUser(null)
+     navigate(response.data.route);
+    }
+    }
+    catch(e){
+      console.error("Erreur lors de la soumission du formulaire :", e);
+     
+    }
+  }
   const submit = async (e: React.FormEvent) => {
 
     e.preventDefault();
@@ -85,7 +100,7 @@ if (!user) return <Navigate to="/Connexion" replace />;
   return (
     <>
     <div className='min-h-screen  flex flex-col justify-center px-4 bg-[#f4f4f462] '>
-        <div className='grid grid-cols-1 sm:grid-cols-2 '>
+        <div className='grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-0'>
         <div className=' bg-cover bg-center flex flex-col justify-center items-center text-white' style={{backgroundImage: "url('/r.jpeg')"}}>
 
         
@@ -94,6 +109,9 @@ if (!user) return <Navigate to="/Connexion" replace />;
             <h1 className='font-bold text-2xl xl:text-3xl'> {user.Nom}</h1>
             <p className='py-4 mx-10 text-center lg:text-lg xl:text-xl '>Votre espace profil, où vous pouvez comsulter et modifier vos Informations selon votre convenance</p>
           </div>
+        </div>
+        <div>
+          <button onClick={supprimer} className='mx-10 rounded-sm text-white font-medium text-center bg-red-600 shadow-lg'> Supprimer le compte</button>
         </div>
         <form   className='grid grid-cols-1 gap-4 text-black relative bottom-8 mx-4 sm:bottom-0 sm:py-4 lg:text-lg'>
              <div className="relative w-[80%] bottom-6 xl:bottom-3 text-red-500 text-sm min-h-[16px] break-words h-auto">
@@ -105,7 +123,7 @@ if (!user) return <Navigate to="/Connexion" replace />;
 
                 </div>
            
-            <div className='bg-white rounded-md border-1 border-[#088cb4] p-2'>
+            <div className='bg-white  rounded-md border-1 border-[#088cb4] p-2'>
                  <div className='flex gap-4 items-start p-2  '>
 
                 <FaUser size={22} />

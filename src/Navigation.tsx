@@ -45,7 +45,7 @@ export default function Navigation() {
                {user? (
                 <div className='flex justify-center items-center gap-6'>
                     <p className=''> Bienvenu Mr/Mme   <span className='pl-4'>{user?.Nom}</span> </p>
-                 <button  onClick={handleLogout} className='hover:cursor-pointer hover:scale-110 hover:text-black'>Deconnexion</button>
+                 <button  onClick={handleLogout} className='hover:cursor-pointer hover:scale-110 hover:text-black'>Déconnexion</button>
                 <p><Notifications id_client={user.id_client} /></p>
                 </div> 
               ): ( <Link to="/Connexion" className='hover:cursor-pointer hover:scale-110 hover:text-black'>Connexion</Link>)}
