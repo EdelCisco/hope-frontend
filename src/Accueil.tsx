@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './App.css';
-import {FaHome,FaUserMd, FaPhoneAlt, FaUser } from "react-icons/fa"
+import {FaHome,FaUserMd, FaPhoneAlt, FaUser, FaInfoCircle } from "react-icons/fa"
 import {MdEmail} from "react-icons/md"
 import { Link } from 'react-router';
 import { useUser } from './Users';
@@ -30,7 +30,7 @@ const [num,setNum]= useState<boolean>(false)
         <div className='grid grid-cols-1 gap-4'>
           <div className=' text-[#088cb4] border-1 border-[#59c2e2] mx-4 my-4 py-4 px-2 bg-[#59c2e21c] rounded-md sm:mx-12 lg:mx-10 xl:mx-20 2xl:mx-28'>
             <div className="flex">
-              <img src="./infomation.png" alt="icone" className='w-8 lg:w-16'/>
+               <FaInfoCircle color='#59c2e2' className='w-8 h-8 lg:w-16 lg:h-16' /> 
               <h2 className='font-semibold text-lg md:text-xl xl:text-2xl lg:mt-4 lg:ml-4'>Informations</h2>
             </div>
             <div className="ml-8 text-sm lg:text-lg lg:ml-18 xl:text-xl xl:ml-28">
@@ -100,6 +100,11 @@ const [num,setNum]= useState<boolean>(false)
                   <p className='mb-2 font-semibold text-lg md:text-xl xl:text-2xl'>Mes rendez-vous</p>
                   <button  className='bg-white/70 rounded-md px-5 py-2  text-sm mt-2 hover:scale-110 hover:text-md hover:cursor-pointer transition-transform duration-300'><Link to="/Rdv">CLIQUER ICI</Link></button>
                 </div>
+                         {user && typeof user.rdv !== 'undefined' && user.rdv > 0 && (
+                <p className="absolute top-2 right-2 text-white bg-red-600 w-6 h-6 text-sm rounded-full flex items-center justify-center">
+                  {user.rdv}
+                </p>
+              )}
               </div>
               <div className=" bg-[#59c2e2] rounded-xl flex items-center px-3 py-5">
                 <div className="border-r-1 border-white pr-3">

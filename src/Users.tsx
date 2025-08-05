@@ -19,7 +19,8 @@ type user = {
   Rang: string,
   complet:number,
   role:string,
-  non_lu: number
+  non_lu: number,
+  rdv: number
 };
 
 type Notification = {

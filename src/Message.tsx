@@ -3,15 +3,26 @@ import './App.css';
 import { useUser } from './Users';
 import { Navigate } from "react-router-dom";
 import { api } from './function';
-import { FaSearch, FaPaperPlane } from "react-icons/fa";
+import { FaSearch, FaPaperPlane, FaTrash, FaTrashAlt } from "react-icons/fa";
 import { io } from 'socket.io-client';
+import { useLocation } from "react-router-dom";
 
 function Message() {
+  const location = useLocation();
+  const { id_medecin } = location.state || {};
+
+  useEffect(() => {
+    if (id_medecin) {
+      Historique(id_medecin); 
+      setModal(true);
+    }
+  }, [id_medecin]);
+
   const { user, loading } = useUser();
 
   type Historiques = {
     id: number;
-    sender: 'client' | 'medecin';  // corrigé pour coller à la DB
+    sender: 'client' | 'medecin';  
     msg: string;
     date_envoi: string;
   }
@@ -30,45 +41,46 @@ function Message() {
   const [messages, setMessages] = useState<Messages[]>([]);
   const [modal, setModal] = useState(false);
   const [newMessage, setNewMessage] = useState('');
+  const [search, setSearch] = useState('');
 
   const socket = useRef<any>(null);
 
   useEffect(() => {
     if (!user) return;
 
-    // Connect to socket server
-    socket.current = io('http://localhost:3000'); // adapte l'url selon ton backend
+    socket.current = io('https://hope-backend-production-813f.up.railway.app');
 
-    // Register user to receive messages
     socket.current.emit('register', user.id_client.toString());
 
-    // Listen for new messages in real-time
     socket.current.on('new_message', (messageData: any) => {
-      // Mise à jour de la conversation ouverte si correspondante
-      if (
-        msg &&
-        msg.id_medecin === messageData.id_medecin &&
-        msg.id_client === messageData.id_client
-      ) {
-        setMsg(prev => prev ? {
-          ...prev,
-          historique: [...prev.historique, {
-            id: messageData.id_message,
-            msg: messageData.contenu,
-            sender: messageData.envoyeur,
-            date_envoi: messageData.date_envoi,
-          }],
-        } : prev);
-      }
-
-      // Optionnel : tu peux aussi rafraîchir la liste globale des messages ici
-      // message();
+      setMsg(prev => {
+        if (!prev) return prev;
+        if (
+          prev.id_medecin === messageData.id_medecin &&
+          prev.id_client === messageData.id_client
+        ) {
+          return {
+            ...prev,
+            historique: [
+              ...prev.historique,
+              {
+                id: messageData.id_message,
+                msg: messageData.contenu,
+                sender: messageData.envoyeur,
+                date_envoi: messageData.date_envoi,
+              }
+            ]
+          }
+        }
+        return prev;
+      });
     });
 
     return () => {
       socket.current.disconnect();
     }
-  }, [user, msg]);
+  }, [user]);
+
 
   const closeHistorique = () => {
     setMsg(null);
@@ -112,14 +124,57 @@ function Message() {
       });
 
       setNewMessage('');
-      // Tu peux attendre un retour socket 'new_message' pour mettre à jour
-      // mais tu peux aussi forcer un reload ici si tu préfères
       await Historique(msg.id_medecin);
       await message();
     } catch (error) {
       console.error('Erreur lors de l’envoi du message', error);
     }
   };
+
+
+  const SupprimerMessage = async (id_message: number) => {
+    if (!msg) return;
+    try {
+      await api.post('/deleteMessage', { data: { id_message } });  
+      await Historique(msg.id_medecin);
+      await message();
+    } catch (error) {
+      console.error('Erreur lors de la suppression du message', error);
+    }
+  };
+
+
+  const SupprimerConversation = async () => {
+    if (!msg) return;
+    if (!window.confirm("Voulez-vous vraiment supprimer toute la conversation ?")) return;
+    try {
+      await api.post('/deleteAllMessages', { data: { id_medecin: msg.id_medecin, id_client: msg.id_client } });
+      closeHistorique();
+      await message();
+    } catch (error) {
+      console.error('Erreur lors de la suppression de la conversation', error);
+    }
+  };
+
+
+   const ToutSupprimer = async () => {
+    if (!msg) return;
+    if (!window.confirm("Voulez-vous vraiment supprimer toute vos conversations ?")) return;
+    try {
+      await api.post('/deleteAllMessages', { data: { id_client: msg.id_client } });
+      closeHistorique();
+      await message();
+    } catch (error) {
+      console.error('Erreur lors de la suppression de la conversation', error);
+    }
+  };
+
+  const messagesFiltres = messages.filter(msg => {
+    const query = search.toLowerCase();
+    const nomMedecin = msg.nom.toLowerCase();
+    const lastMsg = msg.historique.length > 0 ? msg.historique[msg.historique.length - 1].msg.toLowerCase() : "";
+    return nomMedecin.includes(query) || lastMsg.includes(query);
+  });
 
   if (loading) return <div>Chargement...</div>;
   if (!user) return <Navigate to="/Connexion" replace />;
@@ -131,13 +186,24 @@ function Message() {
           <h1 className='text-2xl font-medium mx-10 py-4 lg:text-3xl xl:text-4xl'>Chats</h1>
           <div className='bg-white/40 flex gap-2 items-center rounded-xl mx-10 p-2'>
             <FaSearch className='w-4 h-4' />
-            <input className='outline-none w-full' placeholder='recherche' />
+            <input 
+              className='outline-none w-full' 
+              placeholder='Recherche'
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
           </div>
         </div>
-
+          <button
+                      onClick={ToutSupprimer}
+                      title="Supprimer toutes les notifications"
+                      className="hover:text-red-600 transition"
+                    >
+                      <FaTrashAlt color="red" className="w-5 h-5" />
+                    </button>
         <div className='grid grid-cols-1'>
           {
-            messages.map((msg, index) => {
+            messagesFiltres.map((msg, index) => {
               const lastMsg = msg.historique.length > 0 ? msg.historique[msg.historique.length - 1] : null;
               return (
                 <div
@@ -176,7 +242,17 @@ function Message() {
                 <img src="/buser.png" alt="compte" className='w-8 h-8 xl:w-10 xl:h-10 rounded-full' />
                 <div className='flex w-full justify-between px-4'>
                   <h3 className='font-medium text-lg lg:text-xl xl:text-2xl'>{msg.nom}</h3>
-                  <button onClick={closeHistorique} className='self-end mb-4 text-white hover:underline'>&times;</button>
+                  <div className="flex gap-4 items-center">
+                    {/* Bouton Tout Supprimer */}
+                    <button
+                      onClick={SupprimerConversation}
+                      className='text-white hover:underline'
+                      title="Supprimer toute la conversation"
+                    >
+                      <FaTrash />
+                    </button>
+                    <button onClick={closeHistorique} className='self-end mb-4 text-white hover:underline'>&times;</button>
+                  </div>
                 </div>
               </div>
 
@@ -185,12 +261,21 @@ function Message() {
                   msg.historique.map((ligne, index) => (
                     <div
                       key={index}
-                      className={`flex ${ligne.sender === 'medecin' ? 'justify-start' : 'justify-end'} lg:text-lg xl:text-xl`}
+                      className={`flex ${ligne.sender === 'medecin' ? 'justify-start' : 'justify-end'} lg:text-lg xl:text-xl relative`}
                     >
                       <div className={`${ligne.sender === 'medecin' ? 'bg-white' : 'bg-[#8bc53f]/50'} p-2 rounded w-[50%]`}>
                         {ligne.msg}
                         <p className='text-sm text-gray-500'>{new Date(ligne.date_envoi).toLocaleString()}</p>
                       </div>
+                      {/* Bouton supprimer message individuel */}
+                      <button
+                        onClick={() => SupprimerMessage(ligne.id)}
+                        className="absolute top-0 right-0 p-1 text-red-600 hover:text-red-800"
+                        title="Supprimer ce message"
+                        style={{marginLeft: '4px', fontSize: '12px'}}
+                      >
+                        <FaTrash />
+                      </button>
                     </div>
                   ))
                 }

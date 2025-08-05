@@ -1,7 +1,7 @@
 // import { useState } from 'react'
 import { FaUserMd, FaPhoneAlt, FaBirthdayCake, FaUser, FaTag,FaFileAlt,FaStethoscope, FaInfoCircle, FaRegStickyNote} from "react-icons/fa"
 import { MdAccessTime } from "react-icons/md"
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { api } from "./function";
 import {useNavigate} from "react-router-dom"
 
@@ -26,10 +26,24 @@ function RendezVous() {
     informations: ""
   
   });
-// Gère l'état de blocage du formulaire
 
  
   const navigate = useNavigate();
+  type Medecin = {
+    id_medecin: number;
+    nom: string;
+    sexe: string;
+    service: string;
+    specialite: string; // ✅ corrigé ici
+    jours: string;
+    heure_debut: string;
+    heure_fin: string;
+  };
+type filter={
+  service: string;
+}
+   const [medecins, setMedecins] = useState<Medecin[]>([]);
+  const [filter,setFilter]= useState<filter[]>([])
 
 
   const Change = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -61,7 +75,6 @@ const submit = async (e: React.FormEvent) => {
     }
 
     const response = await api.post("/Souscription", formData);
-alert(response.data.route)
    
       navigate(response.data.route);
 
@@ -87,6 +100,20 @@ alert(response.data.route)
 };
 
 
+
+  const medecin = async () => {
+    try {
+      const response = await api.get("/medecins");
+      setFilter(response.data.service)
+      setMedecins(response.data.medecin);
+    } catch (error) {
+      console.error('Erreur lors de la récupération des médecins', error);
+    }
+  };
+
+  useEffect(() => {
+    medecin();
+  }, []);
   return (
     <>
     
@@ -153,9 +180,13 @@ alert(response.data.route)
                 <div className='w-full'>
                     <p className='font-medium '>Spécialité ou service souhaité<span className=" text-red-400">*</span></p>
                     <select name="specialite" value={data.specialite} onChange={Change} className="outline-none">
-                      <option value="Cardiologie">Cardiologie</option>
-                      <option value="Pédiatrie">Pédiatrie</option>
-                      <option value="Dermatologie">Dermatologie</option>
+                        {filter.map((med, index) => (
+                        <div key={index}>
+                            <option value={med.service}>{med.service}</option>
+                        </div>
+          
+                           ))}
+                   
                     </select>
                 </div>
                
@@ -166,10 +197,12 @@ alert(response.data.route)
                 <div className='w-full'>
                     <p className='font-medium '>Motif de rendez-vous<span className=" text-red-400">*</span></p>
                     <select name="motif" value={data.motif} onChange={Change} className="outline-none"   required>
-                     
-                      <option value="Cardiologie">Cardiologie</option>
-                      <option value="Pédiatrie">Pédiatrie</option>
-                      <option value="Dermatologie">Dermatologie</option>
+                       {medecins.map((med, index) => (
+                        <div key={index}>
+                            <option value={med.nom}>{med.nom}</option>
+                        </div>
+          
+                           ))}
                     </select>
                 </div>
                
