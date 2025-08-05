@@ -9,7 +9,10 @@ function RendezVous() {
 
  const [bloque, setBloque] = useState(false); // Gère l'état de blocage du formulaire
   
-  const formData = new FormData()
+ const [file, setFile] = useState<File | null>(null);
+
+
+
   const [data, setData] = useState({
     nom: "",
     ddn: "",
@@ -19,7 +22,6 @@ function RendezVous() {
     motif: "",
     medecin: "",
     DateHeure: "",
-    document: formData,
     typeDePatient: "Suivi",
     informations: ""
   
@@ -34,57 +36,58 @@ function RendezVous() {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-  const handleUpload = async (event: any) => {
-  const file = event.target.files[0]
-  formData.append('fichier', file)
+  const handleUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const selectedFile = event.target.files?.[0];
+  if (selectedFile) {
+    setFile(selectedFile);
   }
+};
 
+const submit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setBloque(true);
 
-  const submit = async (e: React.FormEvent) => {
-   
-    e.preventDefault();
+  try {
+    const formData = new FormData();
+    
+    // Ajoute tous les champs texte
+    for (const key in data) {
+      formData.append(key, data[key as keyof typeof data]);
+    }
 
-    // Réinitialise les messages d'erreur et de succès
-   
-    try {
-      setBloque(true);
-      
-      const response = await api.post("/Souscription", data);
+    // Ajoute le fichier s'il existe
+    if (file) {
+      formData.append("fichier", file); // "fichier" est le nom utilisé côté backend (req.file)
+    }
 
-       if(response.data.errors==null){
-        
-     navigate(response.data.route);
+    const response = await api.post("/Souscription", formData);
+
+    if (response.data.errors == null) {
+      navigate(response.data.route);
 
       setData({
-     nom: "",
-    ddn: "",
-    sexe: "M",
-    telephone: "",
-    specialite: "cardiologie",
-    motif: "",
-    medecin: "",
-    DateHeure: "",
-    document: formData,
-    typeDePatient: "Suivi",
-    informations: ""
-      
+        nom: "",
+        ddn: "",
+        sexe: "M",
+        telephone: "",
+        specialite: "cardiologie",
+        motif: "",
+        medecin: "",
+        DateHeure: "",
+        typeDePatient: "Suivi",
+        informations: ""
       });
-    }
-     else{
-      
 
-     
-
-      
+      setFile(null); // Reset le fichier
+    } else {
       setBloque(false);
     }
-      
-    } catch (error) {
-      console.error("Erreur lors de la soumission du formulaire :", error);
-      setBloque(false);
-        
-    }
-  };
+
+  } catch (error) {
+    console.error("Erreur lors de la soumission du formulaire :", error);
+    setBloque(false);
+  }
+};
 
 
   return (
@@ -207,7 +210,7 @@ function RendezVous() {
                 <div className='w-full'>
                     <p className='font-medium'>Document</p>
                     <div className='flex '>
-                    <input type='file' name='document' onChange={handleUpload} placeholder='ordonance,resulatt ...'  className='outline-none w-full' />
+                    <input type='file' name='fichier' onChange={handleUpload} placeholder='ordonance,resulatt ...'  className='outline-none w-full' />
                     </div>
               
                
