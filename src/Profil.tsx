@@ -114,7 +114,7 @@ if (!user) return <Navigate to="/Connexion" replace />;
           <button onClick={supprimer} className='mx-10 rounded-sm text-white font-medium text-center bg-red-600 shadow-lg py-2 px-4 my-4'> Supprimer le compte</button>
         </div>
         </div>
-        <form   className='grid grid-cols-1 gap-4 text-black relative  mx-4   lg:text-lg'>
+        <form   className='grid grid-cols-1 gap-4 text-black relative bottom-8 mx-4 sm:bottom-0 sm:top-4  lg:text-lg'>
              <div className="relative w-[80%] bottom-6 xl:bottom-3 text-red-500 text-sm min-h-[16px] break-words h-auto">
               {erreur.length > 0 ? (
                           erreur.map((er, i) => (
