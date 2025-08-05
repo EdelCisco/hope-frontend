@@ -102,7 +102,7 @@ if (!user) return <Navigate to="/Connexion" replace />;
     <div className='min-h-screen  flex flex-col justify-center px-4 bg-[#f4f4f462] '>
         <div className='grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-0'>
         <div>
-        <div className=' bg-cover bg-center flex flex-col justify-center items-center text-white' style={{backgroundImage: "url('/r.jpeg')"}}>
+        <div className=' bg-cover bg-center flex flex-col justify-center items-center text-white rounded-md' style={{backgroundImage: "url('/r.jpeg')"}}>
           <div className='backdrop-brightness-50 w-full h-full flex flex-col justify-center items-center py-8'>
             <img src="/buser.png" alt="profil" className='w-24 h-24 rounded-full border-1 border-[#088cb4] my-4' />
             <h1 className='font-bold text-2xl xl:text-3xl'> {user.Nom}</h1>
@@ -229,9 +229,9 @@ if (!user) return <Navigate to="/Connexion" replace />;
                
               </div>
              </div>}
-            <p onClick={()=> setBloque(!bloque)} className='mx-10 rounded-sm text-white font-medium text-center bg-gradient-to-r from-[#088cb4] to-[#f7941d]  py-2 shadow-md shadow-gray-300 hover:scale-105 hover:from-[#f7941d] hover:to-[#088cb4] cursor-pointer'> {bloque ? 'Retour' : 'Compléter ou modifier le profil'}</p>
+            <p onClick={()=> setBloque(!bloque)} className='mx-10 rounded-sm text-white font-medium flex justify-center-safe items-center bg-gradient-to-r from-[#088cb4] to-[#f7941d]  py-2 shadow-md shadow-gray-300 hover:scale-105 hover:from-[#f7941d] hover:to-[#088cb4] cursor-pointer'> {bloque ? 'Retour' : 'Compléter ou modifier le profil'}</p>
             {bloque && (
-              <button onClick={submit}  className="mx-10 rounded-sm text-white font-medium text-center bg-gradient-to-r from-[#088cb4] to-[#f7941d] py-2 shadow-md shadow-gray-300 hover:scale-105 hover:from-[#f7941d] hover:to-[#088cb4] cursor-pointer">
+              <button onClick={submit}  className="mx-10 rounded-sm text-white font-medium flex justify-center-safe items-center r bg-gradient-to-r from-[#088cb4] to-[#f7941d] py-2 shadow-md shadow-gray-300 hover:scale-105 hover:from-[#f7941d] hover:to-[#088cb4] cursor-pointer">
                 Confirmer
               </button>
             )}
