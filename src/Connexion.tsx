@@ -46,6 +46,7 @@ function Connexion() {
       if (userRes.data && userRes.data.Email) {
         setUser(userRes.data); // ← mise à jour du contexte
       }
+      alert('ok')
      navigate(response.data.route);
 
       setData({
