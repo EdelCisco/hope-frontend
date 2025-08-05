@@ -229,7 +229,7 @@ if (!user) return <Navigate to="/Connexion" replace />;
                
               </div>
              </div>}
-            <p onClick={()=> setBloque(!bloque)} className='mx-10 rounded-sm text-white font-medium flex justify-center items-center bg-gradient-to-r from-[#088cb4] to-[#f7941d]  py-2  shadow-md shadow-gray-300 hover:scale-105 hover:from-[#f7941d] hover:to-[#088cb4] cursor-pointer'> {bloque ? 'Retour' : 'Compléter ou modifier le profil'}</p>
+            <p onClick={()=> setBloque(!bloque)} className='mx-10 rounded-sm text-white font-medium text-center bg-gradient-to-r from-[#088cb4] to-[#f7941d]  py-2 px-4  shadow-md shadow-gray-300 hover:scale-105 hover:from-[#f7941d] hover:to-[#088cb4] cursor-pointer'> {bloque ? 'Retour' : 'Compléter ou modifier le profil'}</p>
             {bloque && (
               <button onClick={submit}  className="mx-10 rounded-sm text-white font-medium flex justify-center-safe items-center r bg-gradient-to-r from-[#088cb4] to-[#f7941d] py-2 shadow-md shadow-gray-300 hover:scale-105 hover:from-[#f7941d] hover:to-[#088cb4] cursor-pointer">
                 Confirmer
