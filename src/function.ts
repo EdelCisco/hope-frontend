@@ -6,8 +6,6 @@ export const socket = io("https://hope-backend-production-813f.up.railway.app");
 
 export const api= axios.create({
   baseURL: 'https://hope-backend-production-813f.up.railway.app',
- 
-  headers: { "Content-Type": "application/json" },
   withCredentials: true,
   
 
