@@ -61,8 +61,8 @@ const submit = async (e: React.FormEvent) => {
     }
 
     const response = await api.post("/Souscription", formData);
-
-    if (response.data.errors == null) {
+alert(response.data.route)
+   
       navigate(response.data.route);
 
       setData({
@@ -79,10 +79,7 @@ const submit = async (e: React.FormEvent) => {
       });
 
       setFile(null); // Reset le fichier
-    } else {
-      setBloque(false);
-    }
-
+   
   } catch (error) {
     console.error("Erreur lors de la soumission du formulaire :", error);
     setBloque(false);
