@@ -1,6 +1,6 @@
 import {  useState } from 'react'
 import './App.css'
-import { FaBirthdayCake, FaUser, FaKey,FaEye,FaEyeSlash} from "react-icons/fa"
+import { FaBirthdayCake, FaUser, FaKey,FaEye,FaEyeSlash,FaBriefcase,FaVenusMars} from "react-icons/fa"
 import {MdEmail} from "react-icons/md"
 import { useUser } from './Users';
 import { api } from "./function";
@@ -140,7 +140,7 @@ if (!user) return <Navigate to="/Connexion" replace />;
               </div>
                  <div className='flex gap-4 items-start border-t-1 border-[#088cb4] p-2   '>
 
-                <FaUser size={22} />
+                <FaVenusMars size={22} />
                 <div>
                   
                     <p className='font-medium '>Sexe</p>
@@ -169,7 +169,7 @@ if (!user) return <Navigate to="/Connexion" replace />;
               </div>
               <div className='flex gap-4 items-start border-t-1 border-[#088cb4]  p-2  '>
 
-                <FaBirthdayCake size={22}/>
+                <FaBriefcase size={22}/>
                 <div>
                   
                     <p className='font-medium'>Profession</p>
