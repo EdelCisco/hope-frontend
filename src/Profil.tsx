@@ -34,20 +34,20 @@ const {user,setUser,loading}= useUser()
   };
 
 
-  const supprimer = async()=>{
-    try{
- const response = await api.post("/Suppression", data);
+//   const supprimer = async()=>{
+//     try{
+//  const response = await api.post("/Suppression", data);
 
-       if(response.data.errors==null){
-      setUser(null)
-     navigate(response.data.route);
-    }
-    }
-    catch(e){
-      console.error("Erreur lors de la soumission du formulaire :", e);
+//        if(response.data.errors==null){
+//       setUser(null)
+//      navigate(response.data.route);
+//     }
+//     }
+//     catch(e){
+//       console.error("Erreur lors de la soumission du formulaire :", e);
      
-    }
-  }
+//     }
+//   }
   const submit = async (e: React.FormEvent) => {
 
     e.preventDefault();
