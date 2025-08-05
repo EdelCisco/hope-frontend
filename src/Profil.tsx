@@ -34,20 +34,20 @@ const {user,setUser,loading}= useUser()
   };
 
 
-//   const supprimer = async()=>{
-//     try{
-//  const response = await api.post("/Suppression", data);
+  const supprimer = async()=>{
+    try{
+ const response = await api.post("/Suppression", data);
 
-//        if(response.data.errors==null){
-//       setUser(null)
-//      navigate(response.data.route);
-//     }
-//     }
-//     catch(e){
-//       console.error("Erreur lors de la soumission du formulaire :", e);
+       if(response.data.errors==null){
+      setUser(null)
+     navigate(response.data.route);
+    }
+    }
+    catch(e){
+      console.error("Erreur lors de la soumission du formulaire :", e);
      
-//     }
-//   }
+    }
+  }
   const submit = async (e: React.FormEvent) => {
 
     e.preventDefault();
@@ -103,16 +103,16 @@ if (!user) return <Navigate to="/Connexion" replace />;
         <div className='grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-0'>
         <div>
         <div className=' bg-cover bg-center flex flex-col justify-center items-center text-white rounded-md ' style={{backgroundImage: "url('/r.jpeg')"}}>
-          <div className='backdrop-brightness-50 w-full h-full flex flex-col justify-center items-center py-8 rounded-md'>
+          <div className='backdrop-brightness-50 w-full h-full flex flex-col justify-center items-center py-8 md:py-10 lg:py-14 rounded-md'>
             <img src="/buser.png" alt="profil" className='w-24 h-24 rounded-full border-1 border-[#088cb4] my-4 ' />
             <h1 className='font-bold text-2xl xl:text-3xl'> {user.Nom}</h1>
             <p className='py-2 mx-10 text-center lg:text-lg xl:text-xl '>Votre espace profil, où vous pouvez comsulter et modifier vos Informations selon votre convenance</p>
           </div>
           
         </div>
-        {/* <div className='flex items-center justify-center'>
+        <div className='flex items-center justify-center'>
           <button onClick={supprimer} className='mx-10 rounded-sm text-white font-medium text-center  bg-red-600 shadow-lg py-2 px-4 my-4'> Supprimer le compte</button>
-        </div> */}
+        </div>
         </div>
         <form   className='grid grid-cols-1 gap-4 text-black relative bottom-8 mx-4   lg:text-lg'>
              <div className="relative w-[80%] py-2 text-red-500 text-sm break-words h-auto">
