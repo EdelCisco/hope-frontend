@@ -102,11 +102,11 @@ if (!user) return <Navigate to="/Connexion" replace />;
     <div className='min-h-screen  flex flex-col justify-center px-4 bg-[#f4f4f462] '>
         <div className='grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-0'>
         <div>
-        <div className=' bg-cover bg-center flex flex-col justify-center items-center text-white rounded-md py-4' style={{backgroundImage: "url('/r.jpeg')"}}>
+        <div className=' bg-cover bg-center flex flex-col justify-center items-center text-white rounded-md ' style={{backgroundImage: "url('/r.jpeg')"}}>
           <div className='backdrop-brightness-50 w-full h-full flex flex-col justify-center items-center py-4 rounded-md'>
-            <img src="/buser.png" alt="profil" className='w-24 h-24 rounded-full border-1 border-[#088cb4] my-4 py-2' />
+            <img src="/buser.png" alt="profil" className='w-24 h-24 rounded-full border-1 border-[#088cb4] my-4 ' />
             <h1 className='font-bold text-2xl xl:text-3xl'> {user.Nom}</h1>
-            <p className='py-4 mx-10 text-center lg:text-lg xl:text-xl '>Votre espace profil, où vous pouvez comsulter et modifier vos Informations selon votre convenance</p>
+            <p className='py-2 mx-10 text-center lg:text-lg xl:text-xl '>Votre espace profil, où vous pouvez comsulter et modifier vos Informations selon votre convenance</p>
           </div>
           
         </div>
