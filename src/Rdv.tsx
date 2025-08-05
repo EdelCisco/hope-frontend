@@ -36,7 +36,7 @@ function Rdv() {
 
   const Annuler = async (id: number) => {
     try {
-      const response = await api.get(`/Annuler/${id}`);
+      const response = await api.post(`/Annuler/${id}`);
       if (response.data.errors == null) {
         setRdvs(response.data.infos);
       } else {
