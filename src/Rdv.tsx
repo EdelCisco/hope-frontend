@@ -4,7 +4,7 @@ import { useUser } from './Users';
 import { Navigate } from 'react-router';
 
 type RdvType = {
-  id: number;
+  id_rendez_vous: number;
   nom_du_client: string;
   medecin_souhaite: string;
   service: string;
@@ -172,7 +172,7 @@ function Rdv() {
         </div>
 
         {filteredRdvs.map((rdv) => (
-          <div key={rdv.id} className='grid grid-cols-7 gap-4 p-4 border-t-2 border-gray-200 text-gray-700'>
+          <div key={rdv.id_rendez_vous} className='grid grid-cols-7 gap-4 p-4 border-t-2 border-gray-200 text-gray-700'>
             <p>{rdv.nom_du_client}</p>
             <p>{rdv.motif}</p>
             <p>{rdv.service}</p>
@@ -182,7 +182,7 @@ function Rdv() {
             </p>
             <p>{rdv.confirmation === 0 ? 'non' : 'oui'}</p>
             <button
-              onClick={() => Annuler(rdv.id)}
+              onClick={() => Annuler(rdv.id_rendez_vous)}
               className='bg-red-500 mx-10 px-3 py-1 text-gray-600 rounded-2xl cursor-pointer shadow-md hover:scale-105'
             >
               Annuler
