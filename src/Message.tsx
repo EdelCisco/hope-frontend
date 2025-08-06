@@ -161,7 +161,7 @@ function Message() {
     if (!msg) return;
     if (!window.confirm("Voulez-vous vraiment supprimer toute vos conversations ?")) return;
     try {
-      await api.post('/deleteAllMessages', { data: { id_client: msg.id_client } });
+      await api.post('/deleteAllCon', { data: { id_client: msg.id_client } });
       closeHistorique();
       await message();
     } catch (error) {
