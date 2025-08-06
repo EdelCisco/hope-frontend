@@ -110,7 +110,7 @@ const {user,setUser,loading}= useUser()
     formData.append("image", image);
 
     try {
-        await api.post("/image");
+        await api.post("/image",formData);
 
 
     } catch (error) {
