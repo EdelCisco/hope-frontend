@@ -20,7 +20,8 @@ type user = {
   complet:number,
   role:string,
   non_lu: number,
-  rdv: number
+  rdv: number,
+  image: string
 };
 
 type Notification = {

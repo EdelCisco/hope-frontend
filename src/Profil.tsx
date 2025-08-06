@@ -103,6 +103,7 @@ const {user,setUser,loading}= useUser()
     }
   };
   const handleSubmit = async (e: { preventDefault: () => void; }) => {
+    setBloque(true)
     e.preventDefault();
     if (!image) return alert("Sélectionne une image d'abord !");
 
@@ -111,7 +112,11 @@ const {user,setUser,loading}= useUser()
 
     try {
         await api.post("/image",formData);
+       const userRes = await api.post("/Token");
 
+      if (userRes.data && userRes.data.Email) {
+        setUser(userRes.data); // ← mise à jour du contexte
+      }
 
     } catch (error) {
       console.error("Erreur d’upload :", error);
@@ -134,7 +139,7 @@ if (!user) return <Navigate to="/Connexion" replace />;
         
         <div className=' bg-cover bg-center flex flex-col justify-center items-center text-white rounded-md ' style={{backgroundImage: "url('/r.jpeg')"}}>
           <div className='backdrop-brightness-50 w-full h-full flex flex-col justify-center items-center py-4 rounded-md'>
-            <img src="/buser.png" alt="profil" className='w-24 h-24 rounded-full border-1 border-[#088cb4] my-4 ' />
+            <img src={`${user.image? user.image: '/buser/png'}`} alt="profil" className='w-24 h-24 rounded-full border-1 border-[#088cb4] my-4 ' />
              <form onSubmit={handleSubmit}>
               <input
                 type="file"
@@ -143,7 +148,7 @@ if (!user) return <Navigate to="/Connexion" replace />;
                 onChange={handleFileChange}
                 placeholder='+'
               />
-              <button type="submit">Envoyer</button>
+              <button disabled={bloque} type="submit">Envoyer</button>
             </form>
             <h1 className='font-bold text-2xl xl:text-3xl'> {user.Nom}</h1>
             <p className='py-2 mx-10 text-center lg:text-lg xl:text-xl '>Votre espace profil, où vous pouvez comsulter et modifier vos Informations selon votre convenance</p>
