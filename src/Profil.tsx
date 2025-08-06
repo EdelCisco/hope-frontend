@@ -139,6 +139,7 @@ if (!user) return <Navigate to="/Connexion" replace />;
               <input
                 type="file"
                 accept="image/*"
+                name='image'
                 onChange={handleFileChange}
                 placeholder='+'
               />
