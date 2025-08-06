@@ -139,7 +139,7 @@ if (!user) return <Navigate to="/Connexion" replace />;
         
         <div className=' bg-cover bg-center flex flex-col justify-center items-center text-white rounded-md ' style={{backgroundImage: "url('/r.jpeg')"}}>
           <div className='backdrop-brightness-50 w-full h-full flex flex-col justify-center items-center py-4 rounded-md'>
-            <img src={user.image ? user.image : '/buser.png'} alt="profil" className='w-24 h-24 rounded-full border-1 border-[#088cb4] my-4 ' />
+            <img src={user.image || "/buser.png"} alt="profil" className='w-24 h-24 rounded-full border-1 border-[#088cb4] my-4 ' />
              <form onSubmit={handleSubmit}>
               <input
                 type="file"
