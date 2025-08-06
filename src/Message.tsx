@@ -133,6 +133,7 @@ function Message() {
 
 
   const SupprimerMessage = async (id_message: number) => {
+    alert(id_message)
     if (!msg) return;
     try {
       await api.post('/deleteMessage', { data: { id_message } });  
