@@ -21,7 +21,7 @@ function Message() {
   const { user, loading } = useUser();
 
   type Historiques = {
-    id: number;
+    id_message: number;
     sender: 'client' | 'medecin';  
     msg: string;
     date_envoi: string;
@@ -64,7 +64,7 @@ function Message() {
             historique: [
               ...prev.historique,
               {
-                id: messageData.id_message,
+                id_message: messageData.id_message,
                 msg: messageData.contenu,
                 sender: messageData.envoyeur,
                 date_envoi: messageData.date_envoi,
@@ -269,7 +269,7 @@ function Message() {
                       </div>
                       {/* Bouton supprimer message individuel */}
                       <button
-                        onClick={() => SupprimerMessage(ligne.id)}
+                        onClick={() => SupprimerMessage(ligne.id_message)}
                         className="absolute top-0 right-0 p-1 text-red-600 hover:text-red-800"
                         title="Supprimer ce message"
                         style={{marginLeft: '4px', fontSize: '12px'}}
