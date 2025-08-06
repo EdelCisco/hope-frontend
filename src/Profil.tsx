@@ -1,4 +1,4 @@
-import {  useState } from 'react'
+import {  useState, type SetStateAction, type JSXElementConstructor, type Key, type ReactElement, type ReactNode, type ReactPortal, type ChangeEvent } from 'react'
 import './App.css'
 import { FaBirthdayCake, FaUser, FaKey,FaEye,FaEyeSlash,FaBriefcase,FaVenusMars} from "react-icons/fa"
 import {MdEmail} from "react-icons/md"
@@ -94,6 +94,36 @@ const {user,setUser,loading}= useUser()
     }
   };
 
+   const [image, setImage] = useState<File | null>(null);
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedImage = event.target.files?.[0];
+    if (selectedImage) {
+      setImage(selectedImage); 
+    }
+  };
+  const handleSubmit = async (e: { preventDefault: () => void; }) => {
+    e.preventDefault();
+    if (!image) return alert("Sélectionne une image d'abord !");
+
+    const formData = new FormData();
+    formData.append("image", image);
+
+    try {
+        await api.post("/image");
+
+
+    } catch (error) {
+      console.error("Erreur d’upload :", error);
+    }
+  };
+
+ 
+   
+
+
+
+  
 if (loading) return <div>Chargement...</div>; 
 if (!user) return <Navigate to="/Connexion" replace />;
 
@@ -105,6 +135,15 @@ if (!user) return <Navigate to="/Connexion" replace />;
         <div className=' bg-cover bg-center flex flex-col justify-center items-center text-white rounded-md ' style={{backgroundImage: "url('/r.jpeg')"}}>
           <div className='backdrop-brightness-50 w-full h-full flex flex-col justify-center items-center py-4 rounded-md'>
             <img src="/buser.png" alt="profil" className='w-24 h-24 rounded-full border-1 border-[#088cb4] my-4 ' />
+             <form onSubmit={handleSubmit}>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
+                placeholder='+'
+              />
+              <button type="submit">Envoyer</button>
+            </form>
             <h1 className='font-bold text-2xl xl:text-3xl'> {user.Nom}</h1>
             <p className='py-2 mx-10 text-center lg:text-lg xl:text-xl '>Votre espace profil, où vous pouvez comsulter et modifier vos Informations selon votre convenance</p>
           <div className='flex items-end justify-end pt-4'>
@@ -118,7 +157,7 @@ if (!user) return <Navigate to="/Connexion" replace />;
         <form   className='grid grid-cols-1 gap-4 text-black relative bottom-8 mx-4   lg:text-lg'>
              <div className="relative w-[80%] py-2 text-red-500 text-sm break-words h-auto">
               {erreur.length > 0 ? (
-                          erreur.map((er, i) => (
+                          erreur.map((er: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined, i: Key | null | undefined) => (
                             <p key={i} className="w-auto h-auto">{er}</p>
                           ))
                         ) : null}
