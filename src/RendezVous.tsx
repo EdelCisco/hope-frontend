@@ -196,14 +196,7 @@ const submit = async (e: React.FormEvent) => {
                 <FaRegStickyNote size={22} />
                 <div className='w-full'>
                     <p className='font-medium '>Motif de rendez-vous<span className=" text-red-400">*</span></p>
-                    <select name="motif" value={data.motif} onChange={Change} className="outline-none"   required>
-                       {medecins.map((med, index) => (
-                        <div key={index}>
-                            <option value={med.nom}>{med.nom}</option>
-                        </div>
-          
-                           ))}
-                    </select>
+                    <input name="motif" value={data.motif} onChange={Change} className="outline-none"   required />
                 </div>
                
               </div>
@@ -213,10 +206,12 @@ const submit = async (e: React.FormEvent) => {
                 <div className='w-full'>
                     <p className='font-medium '>Medecin souhaité</p>
                     <select name="medecin" value={data.medecin} onChange={Change} className="outline-none" >
-                       <option value="">facultatif</option>
-                      <option value="Cardiologie">Cardiologie</option>
-                      <option value="Pédiatrie">Pédiatrie</option>
-                      <option value="Dermatologie">Dermatologie</option>
+                      {medecins.map((med, index) => (
+                        <div key={index}>
+                            <option value={med.nom}>{med.nom}</option>
+                        </div>
+          
+                           ))}
                     </select>
                 </div>
                
