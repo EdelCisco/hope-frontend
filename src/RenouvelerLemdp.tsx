@@ -70,7 +70,7 @@ const [data, setData] = useState({
         <div className='backdrop-blur-xs w-[90%] lg:w-[80%] xl:w-[70%] 2xl:w-[60%] bg-white/10 rounded-2xl border-1 border-[#088cb4] grid grid-cols-1 sm:grid-cols-2 py-4'>
             <div className='flex flex-col justify-center items-center'>
               <div className='flex justify-center items-center'>
-                <img src="/infomation.png" alt="loogo" className='w-24'/>
+                <img src="/infomation.png" alt="loogo" className='w-52'/>
               </div>
             <div className='mx-8 py-8 text-center '>
                 <h1 className='text-3xl'> Renouveler votre mot de passe</h1>

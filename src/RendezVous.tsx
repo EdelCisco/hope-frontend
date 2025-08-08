@@ -121,7 +121,7 @@ const submit = async (e: React.FormEvent) => {
         <div className='backdrop-blur-xs w-[90%] lg:w-[70%] xl:w-[60%]  bg-white/50 rounded-2xl border-1 border-[#088cb4] grid grid-cols-1  py-4'>
             <div className='flex flex-col justify-center items-center'>
               <div className='flex justify-center items-center'>
-                <img src="/infomation.png" alt="loogo" className='w-24'/>
+                <img src="/infomation.png" alt="loogo" className='w-32'/>
               </div>
             <div className='mx-8 pb-8 text-center'>
                 <h1 className='text-3xl xl:text-4xl'> Bienvenue</h1>
