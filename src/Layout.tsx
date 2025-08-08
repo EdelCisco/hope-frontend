@@ -18,8 +18,8 @@ export default function Layout({ children } : Pros) {
       }
   }
     //La liste des routes où la Navbar et le Footer ne doivent pas apparaître
-    const routesNav = [ '/Inscription', '/Connexion', '/RenouvelerLemdp','/MotDePasseOublie'];
-    const routesFoot = [ '/Inscription', '/Connexion', '/RenouvelerLemdp','/MotDePasseOublié']
+    const routesNav = [ '/Inscription', '/Connexion', '/RenouvelerLemdp','/MotDePasseOublie','/Code'];
+    const routesFoot = [ '/Inscription', '/Connexion', '/RenouvelerLemdp','/MotDePasseOublié','/Code']
     //Verifier si la route actuelle est dans la liste
     const hiddenNav = routesNav.includes(location.pathname);
     const hiddenFoot = routesFoot.includes(location.pathname);
