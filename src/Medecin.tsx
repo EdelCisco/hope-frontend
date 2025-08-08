@@ -114,9 +114,9 @@ export default function Acceuil() {
       </div>
 
       {/* 🔹 Liste des médecins filtrés */}
-      <div className='grid grid-cols-1 gap-4 py-4 mt-10'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 px-4 pb-4 rounded-md'>
         {medecinsFiltres.map((med, index) => (
-          <div key={index} className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 px-4 pb-4 rounded-md'>
+          <div key={index} className=''>
             <div className='bg-white border-2 border-white shadow-xl rounded-xl flex flex-col gap-2 pt-4 items-center text-sm lg:text-lg'>
               <div className='bg-amber-300 border-2 border-white shadow-xl rounded-full w-40 h-40'>
                 <img src="/ft.png" alt="" className='rounded-full w-40 h-40' />
